@@ -1,0 +1,6 @@
+FROM postgres:14.2-alpine
+
+WORKDIR /app
+
+COPY ./scripts/ /docker-entrypoint-initdb.d/
+

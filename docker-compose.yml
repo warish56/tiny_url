@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+
+  server:
+    container_name: server
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+    ports: 
+     - "8000:8000"
+    volumes:
+     - ./backend:/app:rw
+    restart: on-failure
+    depends_on:
+      - postgress
+
+  postgress:
+    container_name: db
+    build:
+      context : ./database
+      dockerfile: dockerfile
+    restart: on-failure
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: warish
+      POSTGRES_DB: main
+    volumes:
+      - db-volume:/var/lib/postgresql/data
+    ports:
+        - 5432:5432
+  
+volumes:
+  db-volume:
