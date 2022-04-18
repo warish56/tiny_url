@@ -11,11 +11,11 @@ const config = {
     connectionTimeoutMillis: 2000,
 }
 
-const poll = new Pool(config);
+const pool = new Pool(config);
 
 const query = async (queryString, params) => {
     try{
-        const result = await poll.query(queryString, params);
+        const result = await pool.query(queryString, params);
         return result.rows;
     }catch (err){
         throw err;

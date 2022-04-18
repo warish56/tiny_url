@@ -2,6 +2,7 @@ const express = require('express');
 const rootRouter = require('./routes');
 const app = express();
 
+app.use(express.json());
 app.use(rootRouter)
 
 app.listen('8000', () => {
