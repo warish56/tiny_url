@@ -1,0 +1,16 @@
+FROM node:17.9-alpine
+
+RUN apk add --no-cache libc6-compat
+
+WORKDIR /app
+
+COPY ./package.json ./yarn.lock /app
+
+RUN yarn install --force
+# whithout these packages next.js will not work 
+# RUN yarn add --dev @swc/cli @swc/core
+
+COPY . /app
+
+CMD ["npm", "run", "dev"]
+

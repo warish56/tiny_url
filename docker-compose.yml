@@ -15,6 +15,19 @@ services:
     depends_on:
       - postgress
 
+  frontend:
+    container_name: frontend
+    depends_on:
+      - server
+    build:
+      context: ./frontend/tiny-front
+      dockerfile: dockerfile
+    restart: on-failure
+    volumes:
+     - ./frontend/tiny-front:/app:rw
+    ports:
+      - 3000:3000
+
   postgress:
     container_name: db
     build:
@@ -29,6 +42,19 @@ services:
       - db-volume:/var/lib/postgresql/data
     ports:
         - 5432:5432
-  
+
+  ngnix:
+    container_name: ngnix
+    ports:
+      - 80:80
+    restart: on-failure
+    build:
+      context: ./ngnix
+      dockerfile: dockerfile
+    depends_on:
+      - server
+      - frontend
+      - postgress
+        
 volumes:
   db-volume:
