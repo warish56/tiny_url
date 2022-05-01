@@ -1,6 +1,6 @@
 const express = require('express');
 const {createTinyUrl, getAliasUrlData, getUserAllUrls, getUserLocationUrlData} = require('../controller/url');
-const { getUserData } = require('../controller/user');
+const { getUserById } = require('../controller/user');
 const { createRandomStringUrl } = require('../helper');
 
 const router = express.Router();
@@ -11,7 +11,7 @@ router.post('/', async(req, res, next) => {
         const {user_id, location} = req.body;
 
         // 1. check user ID is valid or not
-        const userData = await getUserData(user_id);
+        const userData = await getUserById(user_id);
         if(!userData){
             res.json({error: 'Invalid user id'});
             return;

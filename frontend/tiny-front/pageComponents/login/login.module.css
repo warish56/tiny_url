@@ -1,0 +1,44 @@
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.form_container {
+    border: 1px gray solid;
+    border-radius: 6px;
+    padding: 50px;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 15px;
+    min-width: 400px;
+}
+
+.input_wrapper{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 5px;
+}
+
+.submit_btn{
+    border-radius: 6px;
+    padding: 10px 11px;
+    background-color: #1d1d1d;
+    color: white;
+    font-weight: 600;
+}
+
+.input_label{
+    font-size: 14px;
+    color: gray;
+}
+
+.input_field{
+ padding: 10px;
+ border: 1px lightgray solid;
+ border-radius: 10px;
+ width: 100%;
+ font-size: 18px;
+}

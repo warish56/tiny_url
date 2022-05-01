@@ -11,6 +11,7 @@ services:
      - "8000:8000"
     volumes:
      - ./backend:/app:rw
+     - /app/node_modules
     restart: on-failure
     depends_on:
       - postgress
@@ -25,6 +26,7 @@ services:
     restart: on-failure
     volumes:
      - ./frontend/tiny-front:/app:rw
+     - /app/node_modules
     ports:
       - 3000:3000
 
