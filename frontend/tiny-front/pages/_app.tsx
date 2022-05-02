@@ -1,10 +1,13 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { useRouter } from 'next/router';
+import { AppLayout } from '../common/layouts/AppLayout';
 
 function MyApp({ Component, pageProps }: AppProps) {
-
-  return <Component {...pageProps} />
+  return (
+    <AppLayout>
+      <Component {...pageProps} />
+    </AppLayout>
+  )
 }
 
 

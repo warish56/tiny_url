@@ -5,6 +5,16 @@ const { createRandomStringUrl } = require('../helper');
 
 const router = express.Router();
 
+router.get('/', async (req, res) => {
+    try{
+    const user = req.user;
+    const userUrls = await getUserAllUrls(user.id);
+    res.status(200).json(userUrls)
+    }catch(err){
+        res.status(500).json({error: err});
+    }
+})
+
 router.post('/', async(req, res, next) => {
     try{
 

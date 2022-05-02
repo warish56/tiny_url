@@ -1,0 +1,19 @@
+
+.container{
+    display: flex;
+    align-items: stretch;
+    min-height: 100vh;
+
+}
+.left_cont{
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.right_cont{
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 10px;
+    width: 100%;
+    min-height: 100%;
+}

@@ -1,3 +1,4 @@
+const { AUTH_COKKIE_KEY } = require("../constants");
 const { isUserLoggedIn } = require("../controller/auth");
 const { getUserFrommSessionId } = require("../controller/session");
 const { getUserById } = require("../controller/user");
@@ -10,7 +11,8 @@ const authMiddleware = async (req,res, next) => {
      * 3. extract the expiration time from session id
      * 4. check expiration
      */
-    const isAuthenticated = false;
+    let isAuthenticated = false;
+    const sessionId =req.cookies[AUTH_COKKIE_KEY];
     try{
         const isLoggedIn = await isUserLoggedIn(req.cookies);
         if(isLoggedIn){

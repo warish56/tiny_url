@@ -1,0 +1,32 @@
+
+
+.container {
+    min-width: 300px;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 10px;
+    gap: 15px;
+    border-right: 1px lightgray solid;
+    padding-top: 100px;
+    max-height: 100vh;
+    overflow-y: auto;
+    height: fit-content;
+    flex-grow: 1;
+   
+}
+
+.link_container {
+    border: 1px lightgray solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.link_container  a{
+    color: #1d1d1d;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+}
