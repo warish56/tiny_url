@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import { appRequestHandler } from '../../../common/utils';
 
 export const useLogin = () =>{
 
@@ -9,7 +10,7 @@ export const useLogin = () =>{
     }
 
     const loginUser = async (phoneNumber:string, otp:string) =>{
-        const url = "http://localhost:80/be/auth/login";
+        const url = "/auth/login";
         let result = null;
         const body = {
             phoneNumber,
@@ -24,8 +25,7 @@ export const useLogin = () =>{
         }
         try{
             toggleLoading();
-            const res = await fetch(url,  options);
-            const data = await res.json();
+            const data = await appRequestHandler(url,  options);
             result = data;
             console.log("==data==",data);
         }catch(err){

@@ -1,4 +1,6 @@
 import {useState} from 'react'
+import { appRequestHandler } from '../../../common/utils';
+import { APP_URL } from '../../../config';
 
 export const useGenerateTinyUrl = () =>{
 
@@ -9,10 +11,9 @@ export const useGenerateTinyUrl = () =>{
     }
 
     const generateTinyUrl = async (inputUrl:string) =>{
-        const url = "http://localhost:80/be/url";
+        const url = "/url";
 
         const body = {
-            user_id: '1',
             location: inputUrl
         } as unknown as BodyInit
         const options = {
@@ -24,10 +25,9 @@ export const useGenerateTinyUrl = () =>{
         }
         try{
             toggleLoading();
-            const res = await fetch(url,  options);
-            const data = await res.json();
+            const data = await appRequestHandler(url,  options);;
             console.log("==data==",data);
-            return `http://localhost:8000/${data.alias}`
+            return `${APP_URL}/${data.alias}`
         }catch(err){
             console.log("errr===",err);
         }finally{

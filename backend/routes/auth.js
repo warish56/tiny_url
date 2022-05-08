@@ -18,7 +18,7 @@ router.post('/login', async (req, res) => {
     try{
         const {phoneNumber, otp} = req.body;
        const {user, sessionId} = await loginUser(phoneNumber, otp);
-       res.cookie(AUTH_COKKIE_KEY, sessionId);
+       res.cookie(AUTH_COKKIE_KEY, sessionId, {domain: 'app.tiny'});
        res.status(200).json({success: true, user })
     }catch(err){
        res.json({error: err})

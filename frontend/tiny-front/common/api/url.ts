@@ -1,6 +1,7 @@
+import { serverRequestHandler } from "../utils";
 
 export const  fetchUserUrlsList = async (cookies:string) => {
-    const url = "http://ngnix:80/be/url/";
+    const url = "/url";
     let result = [];
     const options = {
         method: 'GET',
@@ -9,9 +10,9 @@ export const  fetchUserUrlsList = async (cookies:string) => {
         }
     }
     try{
-        const res = await fetch(url,  options);
-        const data = await res.json();
+        const data = await serverRequestHandler(url,  options);
         result = data;
+        console.log("==urls===", data)
     }catch(err){
         console.log("errr===",err);
     } 

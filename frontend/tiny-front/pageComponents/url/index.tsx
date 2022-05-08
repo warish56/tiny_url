@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import { IUrlData, IUrlList } from '../../common/types';
+import { APP_URL } from '../../config';
 
 import styles from './url.module.css';
 
@@ -9,7 +10,7 @@ const UrlItem = ({alias, location}:IUrlData) => {
         <div className={styles.url_cont}>
             <div className={styles.group_cont}>
                 <span className='label'>Alias</span>
-                <a href={`http://localhost/be/${alias}`} target="_blank" rel='noreferrer'>{alias}</a>
+                <a href={`${APP_URL}/${alias}`} target="_blank" rel='noreferrer'>{alias}</a>
             </div>
             <div className={styles.group_cont}>
                 <span className='label'>Location</span>

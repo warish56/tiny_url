@@ -4,7 +4,7 @@ import { AppLayout } from '../common/layouts/AppLayout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <AppLayout>
+    <AppLayout {...pageProps}>
       <Component {...pageProps} />
     </AppLayout>
   )

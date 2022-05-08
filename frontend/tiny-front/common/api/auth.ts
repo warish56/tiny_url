@@ -1,6 +1,7 @@
+import { serverRequestHandler } from "../utils";
 
 export const fetchIsAuthenticated = async (cookies:string) => {
-    const url = "http://ngnix:80/be/auth/authenticate";
+    const url = "/auth/authenticate";
     let result = null;
     const options = {
         method: 'GET',
@@ -9,8 +10,7 @@ export const fetchIsAuthenticated = async (cookies:string) => {
         }
     }
     try{
-        const res = await fetch(url,  options);
-        const data = await res.json();
+        const data = await serverRequestHandler(url, options);
         result = data;
     }catch(err){
         console.log("errr===",err);
@@ -21,7 +21,10 @@ export const fetchIsAuthenticated = async (cookies:string) => {
 export const authenticateServerSideProps = async (cookies:string, props:Object) => {
     const isAuthenticated = await fetchIsAuthenticated(cookies);
     if(isAuthenticated){
-        return {props}
+        return {props:{
+            ...(props || {}),
+            isLoggedIn: true
+        }}
     }
     return {
         redirect: {

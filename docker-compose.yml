@@ -57,6 +57,6 @@ services:
       - server
       - frontend
       - postgress
-        
+
 volumes:
   db-volume:

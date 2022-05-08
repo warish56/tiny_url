@@ -18,10 +18,11 @@ router.get('/', async (req, res) => {
 router.post('/', async(req, res, next) => {
     try{
 
-        const {user_id, location} = req.body;
+        const {location} = req.body;
+        const user = req.user; 
 
         // 1. check user ID is valid or not
-        const userData = await getUserById(user_id);
+        const userData = await getUserById(user.id);
         if(!userData){
             res.json({error: 'Invalid user id'});
             return;
@@ -30,7 +31,7 @@ router.post('/', async(req, res, next) => {
 
         //  2. check if max_url amount has exceeded or not
         const maxCreateAmount = userData.max_url;
-        const urlsAlreadyCreated = await getUserAllUrls(user_id);
+        const urlsAlreadyCreated = await getUserAllUrls(user.id);
         const alreadyCreated = urlsAlreadyCreated && urlsAlreadyCreated.length;
 
         if(alreadyCreated >= maxCreateAmount){
@@ -39,7 +40,7 @@ router.post('/', async(req, res, next) => {
         }
 
         //  3. check if already a same location for that same user id is there or not
-        const hasLocationSavedData = await getUserLocationUrlData(user_id, location);
+        const hasLocationSavedData = await getUserLocationUrlData(user.id, location);
         if(hasLocationSavedData){
             res.json(hasLocationSavedData);
             return;
@@ -56,7 +57,7 @@ router.post('/', async(req, res, next) => {
             break;
         }
 
-        const newUrlData = await createTinyUrl({userId: user_id, location, alias: randomShortUrl});
+        const newUrlData = await createTinyUrl({userId: user.id, location, alias: randomShortUrl});
         res.json(newUrlData);
 
     }catch(err){

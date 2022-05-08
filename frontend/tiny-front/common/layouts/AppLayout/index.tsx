@@ -4,14 +4,15 @@ import { Drawer } from "../../components";
 import styles from './appLayout.module.css'
 
 type AppLayoutProps = {
-    children: ReactChild
+    children: ReactChild,
+    isLoggedIn: boolean
 }
 
-export const AppLayout = ({children}:AppLayoutProps) => {
+export const AppLayout = ({children, isLoggedIn}:AppLayoutProps) => {
     return(
         <div className={styles.container}>
             <aside className={styles.left_cont}>
-                <Drawer />
+                {isLoggedIn && <Drawer />}
             </aside>
             <main className={styles.right_cont}>
                 {children}
